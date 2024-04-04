@@ -1,0 +1,47 @@
+[0.037s] Invoking command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1 -- -j16 -l16
+[0.051s] -- Found ament_cmake: 1.3.7 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.120s] -- Found rclcpp: 16.0.8 (/opt/ros/humble/share/rclcpp/cmake)
+[0.140s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.141s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.147s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.156s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.165s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.201s] -- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.202s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.287s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.389s] -- Found geometry_msgs: 4.2.3 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.415s] -- Found tf2: 0.25.5 (/opt/ros/humble/share/tf2/cmake)
+[0.419s] -- Found tf2_geometry_msgs: 0.25.5 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)
+[0.422s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[0.423s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[0.629s] -- Found ament_lint_auto: 0.12.10 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.695s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.695s] -- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/madnad/practice/mobile_robots_programming/src/assignment_1/include>
+[0.695s] -- Configured cppcheck exclude dirs and/or files: 
+[0.698s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.701s] -- Added test 'lint_cmake' to check CMake code style
+[0.703s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[0.715s] -- Added test 'uncrustify' to check C / C++ code style
+[0.715s] -- Configured uncrustify additional arguments: 
+[0.718s] -- Added test 'xmllint' to check XML markup files
+[0.719s] -- Configuring done
+[0.727s] -- Generating done
+[0.728s] -- Build files have been written to: /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1
+[0.756s] [ 66%] [32mBuilding CXX object CMakeFiles/control_node.dir/src/control_node.cpp.o[0m
+[0.756s] [ 66%] [32mBuilding CXX object CMakeFiles/control_node.dir/src/control_node_main.cpp.o[0m
+[0.890s] In file included from [01m[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.cpp:1[m[K:
+[0.890s] [01m[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.hpp:17:10:[m[K [01;31m[Kfatal error: [m[Ktf/transform_listener.h: No such file or directory
+[0.890s]    17 | #include [01;31m[K<tf/transform_listener.h>[m[K
+[0.890s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.890s] compilation terminated.
+[0.890s] In file included from [01m[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node_main.cpp:3[m[K:
+[0.890s] [01m[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.hpp:17:10:[m[K [01;31m[Kfatal error: [m[Ktf/transform_listener.h: No such file or directory
+[0.890s]    17 | #include [01;31m[K<tf/transform_listener.h>[m[K
+[0.890s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.890s] compilation terminated.
+[0.895s] gmake[2]: *** [CMakeFiles/control_node.dir/build.make:76: CMakeFiles/control_node.dir/src/control_node.cpp.o] Error 1
+[0.896s] gmake[2]: *** Waiting for unfinished jobs....
+[0.896s] gmake[2]: *** [CMakeFiles/control_node.dir/build.make:90: CMakeFiles/control_node.dir/src/control_node_main.cpp.o] Error 1
+[0.896s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/control_node.dir/all] Error 2
+[0.896s] gmake: *** [Makefile:146: all] Error 2
+[0.898s] Invoked command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1 -- -j16 -l16

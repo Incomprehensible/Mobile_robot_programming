@@ -1,0 +1,38 @@
+[0.033s] Invoking command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1 -- -j16 -l16
+[0.047s] -- Found ament_cmake: 1.3.7 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.117s] -- Found rclcpp: 16.0.8 (/opt/ros/humble/share/rclcpp/cmake)
+[0.136s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.139s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.146s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.155s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.166s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.201s] -- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.202s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.274s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.371s] -- Found geometry_msgs: 4.2.3 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.403s] -- Found tf2: 0.25.5 (/opt/ros/humble/share/tf2/cmake)
+[0.409s] -- Found tf2_geometry_msgs: 0.25.5 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)
+[0.412s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[0.413s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[0.629s] -- Found ament_lint_auto: 0.12.10 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.681s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.682s] -- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/madnad/practice/mobile_robots_programming/src/assignment_1/include>
+[0.682s] -- Configured cppcheck exclude dirs and/or files: 
+[0.682s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.684s] -- Added test 'lint_cmake' to check CMake code style
+[0.685s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[0.692s] -- Added test 'uncrustify' to check C / C++ code style
+[0.692s] -- Configured uncrustify additional arguments: 
+[0.693s] -- Added test 'xmllint' to check XML markup files
+[0.693s] -- Configuring done
+[0.700s] -- Generating done
+[0.702s] -- Build files have been written to: /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1
+[0.722s] [ 50%] [32mBuilding CXX object CMakeFiles/control_node.dir/src/control_node.cpp.o[0m
+[2.402s] [100%] [32m[1mLinking CXX executable control_node[0m
+[2.461s] /usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+[2.461s] (.text+0x1b): undefined reference to `main'
+[2.465s] collect2: error: ld returned 1 exit status
+[2.466s] gmake[2]: *** [CMakeFiles/control_node.dir/build.make:197: control_node] Error 1
+[2.467s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/control_node.dir/all] Error 2
+[2.467s] gmake: *** [Makefile:146: all] Error 2
+[2.468s] Invoked command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1 -- -j16 -l16

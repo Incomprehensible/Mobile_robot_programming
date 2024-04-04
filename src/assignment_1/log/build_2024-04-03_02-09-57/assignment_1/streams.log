@@ -1,0 +1,25 @@
+[0.069s] Invoking command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1 -- -j16 -l16
+[0.122s] [ 33%] [32mBuilding CXX object CMakeFiles/control_node.dir/src/control_node.cpp.o[0m
+[5.192s] [ 66%] [32m[1mLinking CXX executable control_node[0m
+[5.408s] [100%] Built target control_node
+[5.415s] Invoked command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1 -- -j16 -l16
+[5.439s] Invoking command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1
+[5.441s] -- Install configuration: ""
+[5.441s] -- Installing: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/lib/assignment_1/control_node
+[5.444s] -- Set runtime path of "/home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/lib/assignment_1/control_node" to ""
+[5.444s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/ament_index/resource_index/package_run_dependencies/assignment_1
+[5.444s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/ament_index/resource_index/parent_prefix_path/assignment_1
+[5.444s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/ament_prefix_path.sh
+[5.444s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/ament_prefix_path.dsv
+[5.444s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/path.sh
+[5.444s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/path.dsv
+[5.444s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.bash
+[5.445s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.sh
+[5.445s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.zsh
+[5.445s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.dsv
+[5.445s] -- Installing: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/package.dsv
+[5.445s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/ament_index/resource_index/packages/assignment_1
+[5.445s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/cmake/assignment_1Config.cmake
+[5.445s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/cmake/assignment_1Config-version.cmake
+[5.445s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/package.xml
+[5.447s] Invoked command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1

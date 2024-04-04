@@ -1,0 +1,7 @@
+[01m[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.cpp:[m[K In constructor ‘[01m[KTurtleBot3Controller::TurtleBot3Controller(const rclcpp::NodeOptions&, const string&)[m[K’:
+[01m[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.cpp:19:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpose_[m[K’ was not declared in this scope
+   19 |     [01;31m[Kpose_[m[K = {0};
+      |     [01;31m[K^~~~~[m[K
+gmake[2]: *** [CMakeFiles/control_node.dir/build.make:76: CMakeFiles/control_node.dir/src/control_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/control_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

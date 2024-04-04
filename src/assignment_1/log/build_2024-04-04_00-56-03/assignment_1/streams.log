@@ -1,0 +1,25 @@
+[0.182s] Invoking command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1 -- -j16 -l16
+[0.325s] [ 33%] [32mBuilding CXX object CMakeFiles/control_node.dir/src/control_node.cpp.o[0m
+[13.656s] [ 66%] [32m[1mLinking CXX executable control_node[0m
+[14.334s] [100%] Built target control_node
+[14.351s] Invoked command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1 -- -j16 -l16
+[14.450s] Invoking command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1
+[14.461s] -- Install configuration: ""
+[14.463s] -- Installing: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/lib/assignment_1/control_node
+[14.472s] -- Set runtime path of "/home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/lib/assignment_1/control_node" to ""
+[14.472s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/ament_index/resource_index/package_run_dependencies/assignment_1
+[14.473s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/ament_index/resource_index/parent_prefix_path/assignment_1
+[14.473s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/ament_prefix_path.sh
+[14.473s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/ament_prefix_path.dsv
+[14.474s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/path.sh
+[14.475s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/path.dsv
+[14.475s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.bash
+[14.475s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.sh
+[14.475s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.zsh
+[14.476s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.dsv
+[14.476s] -- Installing: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/package.dsv
+[14.477s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/ament_index/resource_index/packages/assignment_1
+[14.478s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/cmake/assignment_1Config.cmake
+[14.479s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/cmake/assignment_1Config-version.cmake
+[14.480s] -- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/package.xml
+[14.481s] Invoked command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1

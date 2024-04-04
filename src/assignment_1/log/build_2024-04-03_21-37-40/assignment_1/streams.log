@@ -1,0 +1,10 @@
+[0.102s] Invoking command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1 -- -j16 -l16
+[0.185s] [ 33%] [32mBuilding CXX object CMakeFiles/control_node.dir/src/control_node.cpp.o[0m
+[7.100s] [ 66%] [32m[1mLinking CXX executable control_node[0m
+[7.302s] /usr/bin/ld: CMakeFiles/control_node.dir/src/control_node.cpp.o: in function `void tf2::convert<geometry_msgs::msg::Vector3_<std::allocator<void> >, geometry_msgs::msg::Point_<std::allocator<void> > >(geometry_msgs::msg::Vector3_<std::allocator<void> > const&, geometry_msgs::msg::Point_<std::allocator<void> >&)':
+[7.302s] control_node.cpp:(.text._ZN3tf27convertIN13geometry_msgs3msg8Vector3_ISaIvEEENS2_6Point_IS4_EEEEvRKT_RT0_[_ZN3tf27convertIN13geometry_msgs3msg8Vector3_ISaIvEEENS2_6Point_IS4_EEEEvRKT_RT0_]+0x23): undefined reference to `void tf2::impl::Converter<true, true>::convert<geometry_msgs::msg::Vector3_<std::allocator<void> >, geometry_msgs::msg::Point_<std::allocator<void> > >(geometry_msgs::msg::Vector3_<std::allocator<void> > const&, geometry_msgs::msg::Point_<std::allocator<void> >&)'
+[7.319s] collect2: error: ld returned 1 exit status
+[7.320s] gmake[2]: *** [CMakeFiles/control_node.dir/build.make:214: control_node] Error 1
+[7.320s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/control_node.dir/all] Error 2
+[7.321s] gmake: *** [Makefile:146: all] Error 2
+[7.324s] Invoked command in '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1 -- -j16 -l16

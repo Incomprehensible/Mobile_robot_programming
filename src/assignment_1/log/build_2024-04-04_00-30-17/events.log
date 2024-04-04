@@ -1,0 +1,187 @@
+[0.000000] (-) TimerEvent: {}
+[0.000411] (assignment_1) JobQueued: {'identifier': 'assignment_1', 'dependencies': OrderedDict()}
+[0.000791] (assignment_1) JobStarted: {'identifier': 'assignment_1'}
+[0.097899] (-) TimerEvent: {}
+[0.188435] (assignment_1) JobProgress: {'identifier': 'assignment_1', 'progress': 'cmake'}
+[0.190783] (assignment_1) JobProgress: {'identifier': 'assignment_1', 'progress': 'build'}
+[0.192806] (assignment_1) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1', '--', '-j16', '-l16'], 'cwd': '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'madnad'), ('LC_TIME', 'de_AT.UTF-8'), ('GIO_MODULE_DIR', '/home/madnad/snap/code/common/.cache/gio-modules'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/snap/code/155/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('GTK_EXE_PREFIX_VSCODE_SNAP_ORIG', '/snap/code/155/usr'), ('STM32CubeMX_PATH', '/home/madnad/STM32CubeMX'), ('GDK_BACKEND_VSCODE_SNAP_ORIG', 'x11'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/madnad'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('LOCPATH_VSCODE_SNAP_ORIG', '/snap/code/155/usr/lib/locale'), ('OLDPWD', '/home/madnad/practice/mobile_robots_programming/src'), ('TERM_PROGRAM_VERSION', '1.87.2'), ('DESKTOP_SESSION', 'ubuntu'), ('GTK_PATH', '/snap/code/155/usr/lib/x86_64-linux-gnu/gtk-3.0:/snap/code/155/usr/lib/x86_64-linux-gnu/gtk-3.0'), ('GTK_IM_MODULE_FILE', '/home/madnad/snap/code/common/.cache/immodules/immodules.cache'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/155/.local/share/glib-2.0/schemas'), ('VSCODE_GIT_ASKPASS_MAIN', '/snap/code/155/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'de_AT.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/snap/code/155/usr/share/code/code'), ('MANAGERPID', '2340'), ('SYSTEMD_EXEC_PID', '2556'), ('IM_CONFIG_CHECK_ENV', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '5277'), ('_colcon_cd_root', '/opt/ros/humble/'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'madnad'), ('JOURNAL_STREAM', '8:41196'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_SESSION_CLASS', 'user'), ('XDG_DATA_DIRS_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/155/.local/share:/home/madnad/snap/code/155:/snap/code/155/usr/share:/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('USERNAME', 'madnad'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/madnad/.local/bin:/opt/ros/humble/bin:/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/madnad/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/gcc-arm-none-eabi/bin:/opt/gcc-arm-none-eabi/bin:/home/madnad/ardupilot/Tools/autotest/:/home/madnad/ardupilot/Tools/autotest/:/home/madnad/ardupilot/Tools/autotest/'), ('SESSION_MANAGER', 'local/MadNad:@/tmp/.ICE-unix/2535,unix/MadNad:/tmp/.ICE-unix/2535'), ('GTK_EXE_PREFIX', '/snap/code/155/usr'), ('INVOCATION_ID', '24a4c615ce064fb0aa0c48c5d38be213'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'de_AT.UTF-8'), ('BAMF_DESKTOP_FILE_HINT', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LOCPATH', '/snap/code/155/usr/lib/locale:/snap/code/155/usr/lib/locale'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'de_AT.UTF-8'), ('GIO_MODULE_DIR_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/common/.cache/gio-modules'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.NZ95K2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-3ea5581447.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('GSETTINGS_SCHEMA_DIR', '/home/madnad/snap/code/155/.local/share/glib-2.0/schemas'), ('AMENT_PREFIX_PATH', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1:/opt/ros/humble'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'Unity'), ('SHELL', '/bin/bash'), ('LC_NAME', 'de_AT.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('NO_AT_BRIDGE', '1'), ('PX4_HOME_LAT', '46.612972'), ('GDMSESSION', 'ubuntu'), ('PX4_HOME_ALT', '450'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GTK_PATH_VSCODE_SNAP_ORIG', '/snap/code/155/usr/lib/x86_64-linux-gnu/gtk-3.0'), ('GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/common/.cache/immodules/immodules.cache'), ('LC_MEASUREMENT', 'de_AT.UTF-8'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'de_AT.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/home/madnad/snap/code/155/.local/share:/home/madnad/snap/code/155:/snap/code/155/usr/share:/home/madnad/snap/code/155/.local/share:/home/madnad/snap/code/155:/snap/code/155/usr/share:/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'de_AT.UTF-8'), ('LC_PAPER', 'de_AT.UTF-8'), ('PX4_HOME_LON', '14.265361'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1:/opt/ros/humble')]), 'shell': False}
+[0.200011] (-) TimerEvent: {}
+[0.300636] (-) TimerEvent: {}
+[0.323034] (assignment_1) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/control_node.dir/src/control_node.cpp.o\x1b[0m\n'}
+[0.400774] (-) TimerEvent: {}
+[0.501418] (-) TimerEvent: {}
+[0.602244] (-) TimerEvent: {}
+[0.703305] (-) TimerEvent: {}
+[0.804797] (-) TimerEvent: {}
+[0.905453] (-) TimerEvent: {}
+[1.006709] (-) TimerEvent: {}
+[1.108183] (-) TimerEvent: {}
+[1.208965] (-) TimerEvent: {}
+[1.310038] (-) TimerEvent: {}
+[1.410932] (-) TimerEvent: {}
+[1.512073] (-) TimerEvent: {}
+[1.612746] (-) TimerEvent: {}
+[1.714082] (-) TimerEvent: {}
+[1.815188] (-) TimerEvent: {}
+[1.915738] (-) TimerEvent: {}
+[2.016835] (-) TimerEvent: {}
+[2.117367] (-) TimerEvent: {}
+[2.218042] (-) TimerEvent: {}
+[2.318830] (-) TimerEvent: {}
+[2.419610] (-) TimerEvent: {}
+[2.520638] (-) TimerEvent: {}
+[2.621249] (-) TimerEvent: {}
+[2.722174] (-) TimerEvent: {}
+[2.822637] (-) TimerEvent: {}
+[2.923234] (-) TimerEvent: {}
+[3.024072] (-) TimerEvent: {}
+[3.124783] (-) TimerEvent: {}
+[3.225401] (-) TimerEvent: {}
+[3.326323] (-) TimerEvent: {}
+[3.427034] (-) TimerEvent: {}
+[3.527860] (-) TimerEvent: {}
+[3.629223] (-) TimerEvent: {}
+[3.730598] (-) TimerEvent: {}
+[3.831122] (-) TimerEvent: {}
+[3.931904] (-) TimerEvent: {}
+[4.033278] (-) TimerEvent: {}
+[4.133810] (-) TimerEvent: {}
+[4.234426] (-) TimerEvent: {}
+[4.335007] (-) TimerEvent: {}
+[4.435727] (-) TimerEvent: {}
+[4.536470] (-) TimerEvent: {}
+[4.637147] (-) TimerEvent: {}
+[4.737887] (-) TimerEvent: {}
+[4.838660] (-) TimerEvent: {}
+[4.939235] (-) TimerEvent: {}
+[5.040226] (-) TimerEvent: {}
+[5.140693] (-) TimerEvent: {}
+[5.241290] (-) TimerEvent: {}
+[5.342304] (-) TimerEvent: {}
+[5.443037] (-) TimerEvent: {}
+[5.543680] (-) TimerEvent: {}
+[5.644310] (-) TimerEvent: {}
+[5.745239] (-) TimerEvent: {}
+[5.846235] (-) TimerEvent: {}
+[5.946963] (-) TimerEvent: {}
+[6.048413] (-) TimerEvent: {}
+[6.149161] (-) TimerEvent: {}
+[6.249657] (-) TimerEvent: {}
+[6.350343] (-) TimerEvent: {}
+[6.450825] (-) TimerEvent: {}
+[6.551634] (-) TimerEvent: {}
+[6.653256] (-) TimerEvent: {}
+[6.754352] (-) TimerEvent: {}
+[6.854862] (-) TimerEvent: {}
+[6.955532] (-) TimerEvent: {}
+[7.056152] (-) TimerEvent: {}
+[7.156765] (-) TimerEvent: {}
+[7.257638] (-) TimerEvent: {}
+[7.358139] (-) TimerEvent: {}
+[7.458828] (-) TimerEvent: {}
+[7.559458] (-) TimerEvent: {}
+[7.659958] (-) TimerEvent: {}
+[7.760777] (-) TimerEvent: {}
+[7.861720] (-) TimerEvent: {}
+[7.962191] (-) TimerEvent: {}
+[8.062753] (-) TimerEvent: {}
+[8.164125] (-) TimerEvent: {}
+[8.264899] (-) TimerEvent: {}
+[8.365786] (-) TimerEvent: {}
+[8.467065] (-) TimerEvent: {}
+[8.567731] (-) TimerEvent: {}
+[8.668497] (-) TimerEvent: {}
+[8.769554] (-) TimerEvent: {}
+[8.870570] (-) TimerEvent: {}
+[8.971694] (-) TimerEvent: {}
+[9.072381] (-) TimerEvent: {}
+[9.173588] (-) TimerEvent: {}
+[9.274426] (-) TimerEvent: {}
+[9.375899] (-) TimerEvent: {}
+[9.476515] (-) TimerEvent: {}
+[9.577210] (-) TimerEvent: {}
+[9.678510] (-) TimerEvent: {}
+[9.779128] (-) TimerEvent: {}
+[9.879923] (-) TimerEvent: {}
+[9.980806] (-) TimerEvent: {}
+[10.081443] (-) TimerEvent: {}
+[10.182194] (-) TimerEvent: {}
+[10.282903] (-) TimerEvent: {}
+[10.383901] (-) TimerEvent: {}
+[10.484719] (-) TimerEvent: {}
+[10.585856] (-) TimerEvent: {}
+[10.686600] (-) TimerEvent: {}
+[10.787589] (-) TimerEvent: {}
+[10.889966] (-) TimerEvent: {}
+[10.990802] (-) TimerEvent: {}
+[11.091325] (-) TimerEvent: {}
+[11.192048] (-) TimerEvent: {}
+[11.292508] (-) TimerEvent: {}
+[11.393084] (-) TimerEvent: {}
+[11.493824] (-) TimerEvent: {}
+[11.594378] (-) TimerEvent: {}
+[11.695179] (-) TimerEvent: {}
+[11.796477] (-) TimerEvent: {}
+[11.897389] (-) TimerEvent: {}
+[11.998173] (-) TimerEvent: {}
+[12.099583] (-) TimerEvent: {}
+[12.200375] (-) TimerEvent: {}
+[12.300965] (-) TimerEvent: {}
+[12.402023] (-) TimerEvent: {}
+[12.503050] (-) TimerEvent: {}
+[12.603614] (-) TimerEvent: {}
+[12.704615] (-) TimerEvent: {}
+[12.805202] (-) TimerEvent: {}
+[12.906047] (-) TimerEvent: {}
+[13.006964] (-) TimerEvent: {}
+[13.107631] (-) TimerEvent: {}
+[13.208357] (-) TimerEvent: {}
+[13.309399] (-) TimerEvent: {}
+[13.410339] (-) TimerEvent: {}
+[13.511322] (-) TimerEvent: {}
+[13.612712] (-) TimerEvent: {}
+[13.713648] (-) TimerEvent: {}
+[13.814195] (-) TimerEvent: {}
+[13.914848] (-) TimerEvent: {}
+[14.015961] (-) TimerEvent: {}
+[14.116627] (-) TimerEvent: {}
+[14.217698] (-) TimerEvent: {}
+[14.252031] (assignment_1) StdoutLine: {'line': b'[ 66%] \x1b[32m\x1b[1mLinking CXX executable control_node\x1b[0m\n'}
+[14.317964] (-) TimerEvent: {}
+[14.418590] (-) TimerEvent: {}
+[14.519478] (-) TimerEvent: {}
+[14.620166] (-) TimerEvent: {}
+[14.720799] (-) TimerEvent: {}
+[14.821648] (-) TimerEvent: {}
+[14.922755] (-) TimerEvent: {}
+[14.934316] (assignment_1) StdoutLine: {'line': b'[100%] Built target control_node\n'}
+[14.955146] (assignment_1) CommandEnded: {'returncode': 0}
+[15.023318] (-) TimerEvent: {}
+[15.035300] (assignment_1) JobProgress: {'identifier': 'assignment_1', 'progress': 'install'}
+[15.047824] (assignment_1) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1'], 'cwd': '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'madnad'), ('LC_TIME', 'de_AT.UTF-8'), ('GIO_MODULE_DIR', '/home/madnad/snap/code/common/.cache/gio-modules'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/snap/code/155/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('GTK_EXE_PREFIX_VSCODE_SNAP_ORIG', '/snap/code/155/usr'), ('STM32CubeMX_PATH', '/home/madnad/STM32CubeMX'), ('GDK_BACKEND_VSCODE_SNAP_ORIG', 'x11'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/madnad'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('LOCPATH_VSCODE_SNAP_ORIG', '/snap/code/155/usr/lib/locale'), ('OLDPWD', '/home/madnad/practice/mobile_robots_programming/src'), ('TERM_PROGRAM_VERSION', '1.87.2'), ('DESKTOP_SESSION', 'ubuntu'), ('GTK_PATH', '/snap/code/155/usr/lib/x86_64-linux-gnu/gtk-3.0:/snap/code/155/usr/lib/x86_64-linux-gnu/gtk-3.0'), ('GTK_IM_MODULE_FILE', '/home/madnad/snap/code/common/.cache/immodules/immodules.cache'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/155/.local/share/glib-2.0/schemas'), ('VSCODE_GIT_ASKPASS_MAIN', '/snap/code/155/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'de_AT.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/snap/code/155/usr/share/code/code'), ('MANAGERPID', '2340'), ('SYSTEMD_EXEC_PID', '2556'), ('IM_CONFIG_CHECK_ENV', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '5277'), ('_colcon_cd_root', '/opt/ros/humble/'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'madnad'), ('JOURNAL_STREAM', '8:41196'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_SESSION_CLASS', 'user'), ('XDG_DATA_DIRS_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/155/.local/share:/home/madnad/snap/code/155:/snap/code/155/usr/share:/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('USERNAME', 'madnad'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/madnad/.local/bin:/opt/ros/humble/bin:/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/madnad/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/gcc-arm-none-eabi/bin:/opt/gcc-arm-none-eabi/bin:/home/madnad/ardupilot/Tools/autotest/:/home/madnad/ardupilot/Tools/autotest/:/home/madnad/ardupilot/Tools/autotest/'), ('SESSION_MANAGER', 'local/MadNad:@/tmp/.ICE-unix/2535,unix/MadNad:/tmp/.ICE-unix/2535'), ('GTK_EXE_PREFIX', '/snap/code/155/usr'), ('INVOCATION_ID', '24a4c615ce064fb0aa0c48c5d38be213'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'de_AT.UTF-8'), ('BAMF_DESKTOP_FILE_HINT', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LOCPATH', '/snap/code/155/usr/lib/locale:/snap/code/155/usr/lib/locale'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'de_AT.UTF-8'), ('GIO_MODULE_DIR_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/common/.cache/gio-modules'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.NZ95K2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-3ea5581447.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('GSETTINGS_SCHEMA_DIR', '/home/madnad/snap/code/155/.local/share/glib-2.0/schemas'), ('AMENT_PREFIX_PATH', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1:/opt/ros/humble'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'Unity'), ('SHELL', '/bin/bash'), ('LC_NAME', 'de_AT.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('NO_AT_BRIDGE', '1'), ('PX4_HOME_LAT', '46.612972'), ('GDMSESSION', 'ubuntu'), ('PX4_HOME_ALT', '450'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GTK_PATH_VSCODE_SNAP_ORIG', '/snap/code/155/usr/lib/x86_64-linux-gnu/gtk-3.0'), ('GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/common/.cache/immodules/immodules.cache'), ('LC_MEASUREMENT', 'de_AT.UTF-8'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'de_AT.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/home/madnad/snap/code/155/.local/share:/home/madnad/snap/code/155:/snap/code/155/usr/share:/home/madnad/snap/code/155/.local/share:/home/madnad/snap/code/155:/snap/code/155/usr/share:/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'de_AT.UTF-8'), ('LC_PAPER', 'de_AT.UTF-8'), ('PX4_HOME_LON', '14.265361'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1:/opt/ros/humble')]), 'shell': False}
+[15.060744] (assignment_1) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[15.062038] (assignment_1) StdoutLine: {'line': b'-- Installing: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/lib/assignment_1/control_node\n'}
+[15.071375] (assignment_1) StdoutLine: {'line': b'-- Set runtime path of "/home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/lib/assignment_1/control_node" to ""\n'}
+[15.074413] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/ament_index/resource_index/package_run_dependencies/assignment_1\n'}
+[15.076416] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/ament_index/resource_index/parent_prefix_path/assignment_1\n'}
+[15.077702] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/ament_prefix_path.sh\n'}
+[15.078074] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/ament_prefix_path.dsv\n'}
+[15.078405] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/path.sh\n'}
+[15.078816] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/environment/path.dsv\n'}
+[15.079776] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.bash\n'}
+[15.080199] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.sh\n'}
+[15.080558] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.zsh\n'}
+[15.080938] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/local_setup.dsv\n'}
+[15.081559] (assignment_1) StdoutLine: {'line': b'-- Installing: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/package.dsv\n'}
+[15.082735] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/ament_index/resource_index/packages/assignment_1\n'}
+[15.084536] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/cmake/assignment_1Config.cmake\n'}
+[15.087110] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/cmake/assignment_1Config-version.cmake\n'}
+[15.087953] (assignment_1) StdoutLine: {'line': b'-- Up-to-date: /home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1/share/assignment_1/package.xml\n'}
+[15.089158] (assignment_1) CommandEnded: {'returncode': 0}
+[15.123766] (-) TimerEvent: {}
+[15.226739] (-) TimerEvent: {}
+[15.327715] (-) TimerEvent: {}
+[15.428290] (-) TimerEvent: {}
+[15.529206] (-) TimerEvent: {}
+[15.568230] (assignment_1) JobEnded: {'identifier': 'assignment_1', 'rc': 0}
+[15.570687] (-) EventReactorShutdown: {}

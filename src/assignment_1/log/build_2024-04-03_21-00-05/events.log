@@ -1,0 +1,139 @@
+[0.000000] (-) TimerEvent: {}
+[0.000205] (assignment_1) JobQueued: {'identifier': 'assignment_1', 'dependencies': OrderedDict()}
+[0.000745] (assignment_1) JobStarted: {'identifier': 'assignment_1'}
+[0.080741] (assignment_1) JobProgress: {'identifier': 'assignment_1', 'progress': 'cmake'}
+[0.081974] (assignment_1) JobProgress: {'identifier': 'assignment_1', 'progress': 'build'}
+[0.082980] (assignment_1) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1', '--', '-j16', '-l16'], 'cwd': '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'madnad'), ('LC_TIME', 'de_AT.UTF-8'), ('GIO_MODULE_DIR', '/home/madnad/snap/code/common/.cache/gio-modules'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/snap/code/155/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('GTK_EXE_PREFIX_VSCODE_SNAP_ORIG', '/snap/code/155/usr'), ('STM32CubeMX_PATH', '/home/madnad/STM32CubeMX'), ('GDK_BACKEND_VSCODE_SNAP_ORIG', 'x11'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/madnad'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('LOCPATH_VSCODE_SNAP_ORIG', '/snap/code/155/usr/lib/locale'), ('OLDPWD', '/home/madnad/practice/mobile_robots_programming/src'), ('TERM_PROGRAM_VERSION', '1.87.2'), ('DESKTOP_SESSION', 'ubuntu'), ('GTK_PATH', '/snap/code/155/usr/lib/x86_64-linux-gnu/gtk-3.0:/snap/code/155/usr/lib/x86_64-linux-gnu/gtk-3.0'), ('GTK_IM_MODULE_FILE', '/home/madnad/snap/code/common/.cache/immodules/immodules.cache'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/155/.local/share/glib-2.0/schemas'), ('VSCODE_GIT_ASKPASS_MAIN', '/snap/code/155/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'de_AT.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/snap/code/155/usr/share/code/code'), ('MANAGERPID', '2340'), ('SYSTEMD_EXEC_PID', '2556'), ('IM_CONFIG_CHECK_ENV', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '5277'), ('_colcon_cd_root', '/opt/ros/humble/'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'madnad'), ('JOURNAL_STREAM', '8:41196'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_SESSION_CLASS', 'user'), ('XDG_DATA_DIRS_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/155/.local/share:/home/madnad/snap/code/155:/snap/code/155/usr/share:/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('USERNAME', 'madnad'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/madnad/.local/bin:/opt/ros/humble/bin:/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/madnad/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/gcc-arm-none-eabi/bin:/opt/gcc-arm-none-eabi/bin:/home/madnad/ardupilot/Tools/autotest/:/home/madnad/ardupilot/Tools/autotest/:/home/madnad/ardupilot/Tools/autotest/'), ('SESSION_MANAGER', 'local/MadNad:@/tmp/.ICE-unix/2535,unix/MadNad:/tmp/.ICE-unix/2535'), ('GTK_EXE_PREFIX', '/snap/code/155/usr'), ('INVOCATION_ID', '24a4c615ce064fb0aa0c48c5d38be213'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'de_AT.UTF-8'), ('BAMF_DESKTOP_FILE_HINT', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LOCPATH', '/snap/code/155/usr/lib/locale:/snap/code/155/usr/lib/locale'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'de_AT.UTF-8'), ('GIO_MODULE_DIR_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/common/.cache/gio-modules'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.NZ95K2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-3ea5581447.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('GSETTINGS_SCHEMA_DIR', '/home/madnad/snap/code/155/.local/share/glib-2.0/schemas'), ('AMENT_PREFIX_PATH', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1:/opt/ros/humble'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'Unity'), ('SHELL', '/bin/bash'), ('LC_NAME', 'de_AT.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('NO_AT_BRIDGE', '1'), ('PX4_HOME_LAT', '46.612972'), ('GDMSESSION', 'ubuntu'), ('PX4_HOME_ALT', '450'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GTK_PATH_VSCODE_SNAP_ORIG', '/snap/code/155/usr/lib/x86_64-linux-gnu/gtk-3.0'), ('GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG', '/home/madnad/snap/code/common/.cache/immodules/immodules.cache'), ('LC_MEASUREMENT', 'de_AT.UTF-8'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'de_AT.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/build/assignment_1'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/home/madnad/snap/code/155/.local/share:/home/madnad/snap/code/155:/snap/code/155/usr/share:/home/madnad/snap/code/155/.local/share:/home/madnad/snap/code/155:/snap/code/155/usr/share:/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'de_AT.UTF-8'), ('LC_PAPER', 'de_AT.UTF-8'), ('PX4_HOME_LON', '14.265361'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/madnad/practice/mobile_robots_programming/src/assignment_1/install/assignment_1:/opt/ros/humble')]), 'shell': False}
+[0.099568] (-) TimerEvent: {}
+[0.148944] (assignment_1) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/control_node.dir/src/control_node.cpp.o\x1b[0m\n'}
+[0.149615] (assignment_1) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/control_node.dir/src/control_node_main.cpp.o\x1b[0m\n'}
+[0.199733] (-) TimerEvent: {}
+[0.300453] (-) TimerEvent: {}
+[0.401221] (-) TimerEvent: {}
+[0.501688] (-) TimerEvent: {}
+[0.602289] (-) TimerEvent: {}
+[0.702991] (-) TimerEvent: {}
+[0.803740] (-) TimerEvent: {}
+[0.904298] (-) TimerEvent: {}
+[1.004771] (-) TimerEvent: {}
+[1.105230] (-) TimerEvent: {}
+[1.205963] (-) TimerEvent: {}
+[1.307144] (-) TimerEvent: {}
+[1.407813] (-) TimerEvent: {}
+[1.508372] (-) TimerEvent: {}
+[1.608972] (-) TimerEvent: {}
+[1.709652] (-) TimerEvent: {}
+[1.810219] (-) TimerEvent: {}
+[1.910968] (-) TimerEvent: {}
+[2.011515] (-) TimerEvent: {}
+[2.112331] (-) TimerEvent: {}
+[2.213463] (-) TimerEvent: {}
+[2.317593] (-) TimerEvent: {}
+[2.418315] (-) TimerEvent: {}
+[2.518896] (-) TimerEvent: {}
+[2.619610] (-) TimerEvent: {}
+[2.720448] (-) TimerEvent: {}
+[2.821610] (-) TimerEvent: {}
+[2.922215] (-) TimerEvent: {}
+[3.022875] (-) TimerEvent: {}
+[3.123587] (-) TimerEvent: {}
+[3.224571] (-) TimerEvent: {}
+[3.325171] (-) TimerEvent: {}
+[3.425740] (-) TimerEvent: {}
+[3.526305] (-) TimerEvent: {}
+[3.626899] (-) TimerEvent: {}
+[3.727621] (-) TimerEvent: {}
+[3.828134] (-) TimerEvent: {}
+[3.928660] (-) TimerEvent: {}
+[4.029187] (-) TimerEvent: {}
+[4.129919] (-) TimerEvent: {}
+[4.230675] (-) TimerEvent: {}
+[4.331294] (-) TimerEvent: {}
+[4.431818] (-) TimerEvent: {}
+[4.532406] (-) TimerEvent: {}
+[4.632884] (-) TimerEvent: {}
+[4.642398] (assignment_1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node_main.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid open_loop_control(std::shared_ptr<TurtleBot3Controller>&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[4.642781] (assignment_1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node_main.cpp:13:21:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kusing element_type = class TurtleBot3Controller\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kclass TurtleBot3Controller\x1b[m\x1b[K\xe2\x80\x99} has no member named \xe2\x80\x98\x1b[01m\x1b[Kgo_forward\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.642977] (assignment_1) StderrLine: {'line': b'   13 |         controller->\x1b[01;31m\x1b[Kgo_forward\x1b[m\x1b[K();\n'}
+[4.643144] (assignment_1) StderrLine: {'line': b'      |                     \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[4.643302] (assignment_1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node_main.cpp:14:21:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kusing element_type = class TurtleBot3Controller\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kclass TurtleBot3Controller\x1b[m\x1b[K\xe2\x80\x99} has no member named \xe2\x80\x98\x1b[01m\x1b[Kturn\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.643476] (assignment_1) StderrLine: {'line': b'   14 |         controller->\x1b[01;31m\x1b[Kturn\x1b[m\x1b[K();\n'}
+[4.643636] (assignment_1) StderrLine: {'line': b'      |                     \x1b[01;31m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[4.671877] (assignment_1) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[4.672209] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[4.672376] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[4.672527] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[4.672675] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[4.672819] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[4.672984] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[4.673126] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[4.673270] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[4.673425] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[4.673596] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[4.673792] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.hpp:9\x1b[m\x1b[K,\n'}
+[4.673978] (assignment_1) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.cpp:1\x1b[m\x1b[K:\n'}
+[4.674143] (assignment_1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid TurtleBot3Controller::control_cycle()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[4.674310] (assignment_1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.cpp:59:37:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%f\x1b[m\x1b[K\xe2\x80\x99 expects a matching \xe2\x80\x98\x1b[01m\x1b[Kdouble\x1b[m\x1b[K\xe2\x80\x99 argument [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat=\x07-Wformat=\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[4.674481] (assignment_1) StderrLine: {'line': b'   59 |     RCLCPP_INFO(this->get_logger(), \x1b[01;35m\x1b[K"{x y z yaw}: {%f %f %f %f}"\x1b[m\x1b[K, x, y, z);\n'}
+[4.674648] (assignment_1) StderrLine: {'line': b'      |                                     \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[4.674807] (assignment_1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.cpp:59:62:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[4.674983] (assignment_1) StderrLine: {'line': b'   59 |     RCLCPP_INFO(this->get_logger(), "{x y z yaw}: {%f %f %f \x1b[01;36m\x1b[K%f\x1b[m\x1b[K}", x, y, z);\n'}
+[4.675168] (assignment_1) StderrLine: {'line': b'      |                                                             \x1b[01;36m\x1b[K~^\x1b[m\x1b[K\n'}
+[4.675373] (assignment_1) StderrLine: {'line': b'      |                                                              \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[4.675563] (assignment_1) StderrLine: {'line': b'      |                                                              \x1b[01;36m\x1b[Kdouble\x1b[m\x1b[K\n'}
+[4.675742] (assignment_1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.cpp:57:12:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kyaw\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable\x07-Wunused-variable\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[4.675938] (assignment_1) StderrLine: {'line': b'   57 |     double \x1b[01;35m\x1b[Kyaw\x1b[m\x1b[K = odom2robot.transform.rotation.z;\n'}
+[4.676133] (assignment_1) StderrLine: {'line': b'      |            \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[4.733115] (-) TimerEvent: {}
+[4.833886] (-) TimerEvent: {}
+[4.934350] (-) TimerEvent: {}
+[5.034865] (-) TimerEvent: {}
+[5.135492] (-) TimerEvent: {}
+[5.235985] (-) TimerEvent: {}
+[5.336512] (-) TimerEvent: {}
+[5.437149] (-) TimerEvent: {}
+[5.469934] (assignment_1) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/control_node.dir/build.make:90: CMakeFiles/control_node.dir/src/control_node_main.cpp.o] Error 1\n'}
+[5.470409] (assignment_1) StderrLine: {'line': b'gmake[2]: *** Waiting for unfinished jobs....\n'}
+[5.537379] (-) TimerEvent: {}
+[5.638090] (-) TimerEvent: {}
+[5.738862] (-) TimerEvent: {}
+[5.839546] (-) TimerEvent: {}
+[5.940306] (-) TimerEvent: {}
+[6.041021] (-) TimerEvent: {}
+[6.141937] (-) TimerEvent: {}
+[6.242822] (-) TimerEvent: {}
+[6.343367] (-) TimerEvent: {}
+[6.443988] (-) TimerEvent: {}
+[6.544773] (-) TimerEvent: {}
+[6.646038] (-) TimerEvent: {}
+[6.746616] (-) TimerEvent: {}
+[6.847234] (-) TimerEvent: {}
+[6.947954] (-) TimerEvent: {}
+[7.048758] (-) TimerEvent: {}
+[7.149484] (-) TimerEvent: {}
+[7.250093] (-) TimerEvent: {}
+[7.350722] (-) TimerEvent: {}
+[7.451179] (-) TimerEvent: {}
+[7.551819] (-) TimerEvent: {}
+[7.652325] (-) TimerEvent: {}
+[7.752768] (-) TimerEvent: {}
+[7.853328] (-) TimerEvent: {}
+[7.953922] (-) TimerEvent: {}
+[8.054484] (-) TimerEvent: {}
+[8.154954] (-) TimerEvent: {}
+[8.255716] (-) TimerEvent: {}
+[8.356384] (-) TimerEvent: {}
+[8.457096] (-) TimerEvent: {}
+[8.557639] (-) TimerEvent: {}
+[8.658326] (-) TimerEvent: {}
+[8.758942] (-) TimerEvent: {}
+[8.859684] (-) TimerEvent: {}
+[8.960210] (-) TimerEvent: {}
+[9.060817] (-) TimerEvent: {}
+[9.161680] (-) TimerEvent: {}
+[9.192341] (assignment_1) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/control_node.dir/all] Error 2\n'}
+[9.192755] (assignment_1) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[9.195439] (assignment_1) CommandEnded: {'returncode': 2}
+[9.261823] (-) TimerEvent: {}
+[9.323140] (assignment_1) JobEnded: {'identifier': 'assignment_1', 'rc': 2}
+[9.333745] (-) EventReactorShutdown: {}
