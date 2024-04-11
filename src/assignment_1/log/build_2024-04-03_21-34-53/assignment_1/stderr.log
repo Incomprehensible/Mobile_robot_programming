@@ -1,6 +1,0 @@
-/usr/bin/ld: CMakeFiles/control_node.dir/src/control_node.cpp.o: in function `void tf2::convert<geometry_msgs::msg::TransformStamped_<std::allocator<void> >, geometry_msgs::msg::PoseStamped_<std::allocator<void> > >(geometry_msgs::msg::TransformStamped_<std::allocator<void> > const&, geometry_msgs::msg::PoseStamped_<std::allocator<void> >&)':
-control_node.cpp:(.text._ZN3tf27convertIN13geometry_msgs3msg17TransformStamped_ISaIvEEENS2_12PoseStamped_IS4_EEEEvRKT_RT0_[_ZN3tf27convertIN13geometry_msgs3msg17TransformStamped_ISaIvEEENS2_12PoseStamped_IS4_EEEEvRKT_RT0_]+0x23): undefined reference to `void tf2::impl::Converter<true, true>::convert<geometry_msgs::msg::TransformStamped_<std::allocator<void> >, geometry_msgs::msg::PoseStamped_<std::allocator<void> > >(geometry_msgs::msg::TransformStamped_<std::allocator<void> > const&, geometry_msgs::msg::PoseStamped_<std::allocator<void> >&)'
-collect2: error: ld returned 1 exit status
-gmake[2]: *** [CMakeFiles/control_node.dir/build.make:214: control_node] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/control_node.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

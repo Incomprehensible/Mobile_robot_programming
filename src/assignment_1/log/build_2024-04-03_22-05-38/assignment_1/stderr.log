@@ -1,7 +1,0 @@
-[01m[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.cpp:[m[K In member function ‘[01m[Kvoid TurtleBot3Controller::control_cycle()[m[K’:
-[01m[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.cpp:69:12:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kx_init[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
-   69 |     double [01;35m[Kx_init[m[K = x;
-      |            [01;35m[K^~~~~~[m[K
-[01m[K/home/madnad/practice/mobile_robots_programming/src/assignment_1/src/control_node.cpp:70:12:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ky_init[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
-   70 |     double [01;35m[Ky_init[m[K = y;
-      |            [01;35m[K^~~~~~[m[K
