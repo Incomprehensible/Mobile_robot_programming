@@ -19,7 +19,7 @@
 // #include <tf2/buffer_core.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 
-#define SQUARE_POLYGON 5
+#define SQUARE_POLYGON 5.0
 
 class TurtleBot3Controller : public rclcpp::Node
 {
@@ -38,12 +38,19 @@ class TurtleBot3Controller : public rclcpp::Node
         STOP,
     };
     // The gain K, which is used to calculate the linear velocity
-    const double K_l = 1.0;
+        // const double K_l = 2.0;
+
+    const double K_l = 1.5;
+    const double K_a = 1.5;
+
  
     // The distance threshold in meters that will determine when 
     // the turtlesim robot successfully reaches the goal.
     const double distanceTolerance = 0.01;
-    const double angleTolerance = 0.01;
+            // const double angleTolerance = 0.1;
+    const double angleTolerance = 0.3;
+
+
     
     public:
         explicit TurtleBot3Controller(const rclcpp::NodeOptions & = rclcpp::NodeOptions(), const std::string& = "control_node");
@@ -55,10 +62,10 @@ class TurtleBot3Controller : public rclcpp::Node
     private:
         geometry_msgs::msg::TransformStamped::SharedPtr get_position();
         double get_euclidian_distance(double, double);
-        double get_linear_distance(double);
         double get_angular_distance(double);
-        double set_linear_velocity(double);
-        double set_linear_velocity2(double, double);
+                double get_angular_distance2(double);
+
+        double set_linear_velocity(double, double);
         double set_angular_velocity(double);
         void control_cycle();
         // void go_forward();
@@ -79,6 +86,7 @@ class TurtleBot3Controller : public rclcpp::Node
         double y_init_;
         double yaw_init_;
         double speed_;
+        double goal_yaw_;
         // Pose6D pose_;
         tf2::Vector3 linear_vel_; 
         tf2::Vector3 angular_vel_;

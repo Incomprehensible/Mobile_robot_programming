@@ -1,6 +1,7 @@
 #include "control_node.hpp"
 #include <rcl_interfaces/msg/parameter_descriptor.hpp>
 #include <rclcpp/parameter.hpp>
+#include <angles/angles.h>
 
 using namespace std::chrono_literals;
 
@@ -21,7 +22,8 @@ TurtleBot3Controller::TurtleBot3Controller(const rclcpp::NodeOptions & options, 
     linear_vel_ = {0, 0, 0};
     angular_vel_ = {0, 0, 0};
 
-    this->timer_ = this->create_wall_timer(std::chrono::milliseconds(250), std::bind(&TurtleBot3Controller::control_cycle, this));
+    // this->timer_ = this->create_wall_timer(std::chrono::milliseconds(180), std::bind(&TurtleBot3Controller::control_cycle, this));
+    this->timer_ = this->create_wall_timer(std::chrono::milliseconds(200), std::bind(&TurtleBot3Controller::control_cycle, this));
 
     // 6D position publisher
     pose_pub_ = create_publisher<geometry_msgs::msg::PoseStamped>("/pose", 10);
@@ -29,7 +31,7 @@ TurtleBot3Controller::TurtleBot3Controller(const rclcpp::NodeOptions & options, 
     // Control velocity publisher
     vel_pub_ = create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
     
-    this->vel_timer_ = this->create_wall_timer(std::chrono::milliseconds(100), std::bind(&TurtleBot3Controller::send_velocity, this));
+    this->vel_timer_ = this->create_wall_timer(std::chrono::milliseconds(10), std::bind(&TurtleBot3Controller::send_velocity, this));
     this->pose_timer_ = this->create_wall_timer(std::chrono::milliseconds(1000), std::bind(&TurtleBot3Controller::publish_pose, this));
 }
 
@@ -51,45 +53,46 @@ geometry_msgs::msg::TransformStamped::SharedPtr TurtleBot3Controller::get_positi
     return std::make_shared<geometry_msgs::msg::TransformStamped>(odom2robot);
 }
 
+// double TurtleBot3Controller::get_euclidian_distance(double x, double y)
+// {
+//     return abs(std::sqrt(std::pow(x-this->x_init_, 2) + std::pow(y-this->y_init_, 2)) - SQUARE_POLYGON);
+// }
+
 double TurtleBot3Controller::get_euclidian_distance(double x, double y)
 {
-    return abs(std::sqrt(std::pow(x-this->x_init_, 2) + std::pow(y-this->y_init_, 2)) - SQUARE_POLYGON);
+    return (SQUARE_POLYGON - std::sqrt(std::pow(x-this->x_init_, 2) + std::pow(y-this->y_init_, 2)));
 }
 
-double TurtleBot3Controller::get_linear_distance(double x)
-{
-    return abs(std::sqrt(std::pow(x, 2) + std::pow(this->x_init_, 2)) - SQUARE_POLYGON);
-}
-
-double TurtleBot3Controller::set_linear_velocity(double x) {
-    double vel_x = 0;
-    double dist = this->get_linear_distance(x);
-    // RCLCPP_INFO(this->get_logger(), "linear dist: %f", dist);
-
-    if (dist > distanceTolerance) {
-        // The magnitude of the robot's velocity is directly
-        // proportional to the distance the robot is from the 
-        // goal.
-        vel_x = K_l * dist;
-        vel_x = (abs(vel_x - this->speed_) >= 0.6)? this->speed_ : vel_x;
-    }
-    return vel_x;
-}
-
-double TurtleBot3Controller::set_linear_velocity2(double x, double y) {
+double TurtleBot3Controller::set_linear_velocity(double x, double y) {
     double vel_x = 0;
     double dist = this->get_euclidian_distance(x, y);
-    // RCLCPP_INFO(this->get_logger(), "linear dist: %f", dist);
+    RCLCPP_INFO(this->get_logger(), "linear dist: %f", dist);
 
-    if (dist > distanceTolerance) {
+    if (abs(dist) > distanceTolerance) {
         // The magnitude of the robot's velocity is directly
         // proportional to the distance the robot is from the 
         // goal.
         vel_x = K_l * dist;
-        vel_x = (vel_x > this->speed_)? this->speed_ : vel_x;
+        if (abs(vel_x) > this->speed_)
+            vel_x = (dist > 0)? this->speed_ : this->speed_*-1;
     }
     return vel_x;
 }
+
+// double TurtleBot3Controller::set_linear_velocity(double x, double y) {
+//     double vel_x = 0;
+//     double dist = this->get_euclidian_distance(x, y);
+//     RCLCPP_INFO(this->get_logger(), "linear dist: %f", dist);
+
+//     if (dist > distanceTolerance) {
+//         // The magnitude of the robot's velocity is directly
+//         // proportional to the distance the robot is from the 
+//         // goal.
+//         vel_x = K_l * dist;
+//         vel_x = (vel_x > this->speed_)? this->speed_ : vel_x;
+//     }
+//     return vel_x;
+// }
 
 double normalizeAngle(double angle) {
     return std::remainder(angle, 2.0 * M_PI);
@@ -100,34 +103,67 @@ double TurtleBot3Controller::get_angular_distance(double yaw)
     // Normalize current_yaw to [-π, π] range
 
     // Calculate the new yaw angle after rotation
-    double new_yaw = yaw_init_ + M_PI_2;
+    // double goal_yaw = yaw_init_ + M_PI_2;
     // RCLCPP_INFO(this->get_logger(), "yaw_init_: %f, yaw_init_+(pi/2): %f", yaw_init_, new_yaw);
 
     // Normalize the new_yaw to [-π, π] range
-    new_yaw = normalizeAngle(new_yaw);
+    // goal_yaw = normalizeAngle(goal_yaw);
 
     // Set the new yaw angle
     // RCLCPP_INFO(this->get_logger(), "yaw: %f, new_yaw: %f, yaw-new_yaw: %f", yaw, new_yaw, yaw-new_yaw);
 
-    return abs(yaw - new_yaw);
+    return abs(yaw - goal_yaw_);
 }
 
-// double TurtleBot3Controller::get_angular_distance(double yaw)
-// {
-    // return abs(yaw - M_PI_2);
-// }
+double TurtleBot3Controller::get_angular_distance2(double yaw)
+{
+    yaw = angles::to_degrees(angles::normalize_angle_positive(yaw));
+    double normalized_goal_yaw = angles::to_degrees(angles::normalize_angle_positive(goal_yaw_)); // TODO: calculate beforehand
+        RCLCPP_INFO(this->get_logger(), "yaw: %f, goal_yaw: %f, yaw-goal_yaw: %f", yaw, normalized_goal_yaw, yaw-normalized_goal_yaw);
 
-double TurtleBot3Controller::set_angular_velocity(double x) {
+    return normalized_goal_yaw - yaw;
+}
+
+double TurtleBot3Controller::set_angular_velocity(double yaw) {
     double vel_theta = 0;
-    double theta = this->get_angular_distance(x);
-    // RCLCPP_INFO(this->get_logger(), "angular dist: %f", theta);
+    double theta = this->get_angular_distance2(yaw);
+    double theta_rad = angles::from_degrees(theta);
+    RCLCPP_INFO(this->get_logger(), "angular dist: %f", theta);
+    RCLCPP_INFO(this->get_logger(), "angular dist in rad: %f", theta_rad);
 
-    if (theta > angleTolerance) {
-        vel_theta = K_l * theta;
-        vel_theta = (vel_theta > this->speed_)? this->speed_ : vel_theta;
+    if (abs(theta) > angleTolerance) {
+        vel_theta = K_a * theta_rad;
+        if (abs(vel_theta) > this->speed_)
+            vel_theta = (theta > 0)? this->speed_ : this->speed_*-1;
     }
     return vel_theta;
 }
+
+// latest
+// double TurtleBot3Controller::set_angular_velocity(double yaw) {
+//     double vel_theta = 0;
+//     double theta = this->get_angular_distance2(yaw);
+//     RCLCPP_INFO(this->get_logger(), "angular dist: %f", theta);
+
+//     if (abs(theta) > angleTolerance) {
+//         vel_theta = K_a * theta;
+//         if (abs(vel_theta) > this->speed_)
+//             vel_theta = (theta > 0)? this->speed_ : this->speed_*-1;
+//     }
+//     return vel_theta;
+// }
+
+// double TurtleBot3Controller::set_angular_velocity(double yaw) {
+//     double vel_theta = 0;
+//     double theta = this->get_angular_distance(yaw);
+//     RCLCPP_INFO(this->get_logger(), "angular dist: %f", theta);
+
+//     if (theta > angleTolerance) {
+//         vel_theta = K_a * theta;
+//         vel_theta = (vel_theta > this->speed_)? this->speed_ : vel_theta;
+//     }
+//     return vel_theta;
+// }
 
 void TurtleBot3Controller::control_cycle()
 {
@@ -146,24 +182,29 @@ void TurtleBot3Controller::control_cycle()
     orientation_.setY(odom2robot.transform.rotation.y);
     orientation_.setZ(odom2robot.transform.rotation.z);
     orientation_.setW(odom2robot.transform.rotation.w);
-    double roll, pitch, yaw;
-    tf2::getEulerYPR(orientation_, yaw, pitch, roll);
+    
+    double yaw;
+    yaw = tf2::getYaw(orientation_);
+    // double roll, pitch, yaw;
+    // tf2::getEulerYPR(orientation_, yaw, pitch, roll);
 
     // RCLCPP_INFO(this->get_logger(), "{x y z yaw}: {%f %f %f %f}", x, y, z, yaw);
 
-    rclcpp::Rate rate(5s);
+    // rclcpp::Rate rate(5s);
     if (this->state == REST) {
-        this->state = FORWARD;
         x_init_ = x;
         y_init_ = y;
+        this->state = FORWARD;
     }
     else if (this->state == FORWARD) {
-        double vel_x = this->set_linear_velocity2(x, y);
+        double vel_x = this->set_linear_velocity(x, y);
         // RCLCPP_INFO(this->get_logger(), "setting linear velocity: %f", vel_x);
         linear_vel_.setX(vel_x);
-        send_velocity();
+        // send_velocity();
         if (vel_x == 0) {
             yaw_init_ = yaw;
+            goal_yaw_ = yaw + M_PI_2;
+            goal_yaw_ = normalizeAngle(goal_yaw_);
             this->state = TURN;
             // this->timer_->cancel();
             // rate.sleep();
@@ -175,7 +216,7 @@ void TurtleBot3Controller::control_cycle()
         double vel_theta = this->set_angular_velocity(yaw);
         // RCLCPP_INFO(this->get_logger(), "setting angular velocity: %f", vel_theta);
         angular_vel_.setZ(vel_theta);
-        send_velocity();
+        // send_velocity();
         if (vel_theta == 0) {
             x_init_ = x;
             y_init_ = y;
@@ -190,21 +231,6 @@ void TurtleBot3Controller::control_cycle()
             // this->timer_->reset();
         }
     }
-    // while (std::sqrt(std::pow((this->get_position().get())->transform.translation.x, 2) + std::pow(x_init, 2)) < SQUARE_POLYGON)
-    // {
-    //     linear_vel_.setX(this->speed_);
-    //     send_velocity();
-    // }
-    // if (abs(std::sqrt(std::pow((this->get_position().get())->transform.translation.x, 2) + std::pow(x_init, 2)) - SQUARE_POLYGON) < distanceTolerance)
-    // {
-    //     linear_vel_.setX(this->set_linear_velocity(x));
-    //     send_velocity();
-    // }
-    // else {
-    //     linear_vel_.setX(0);
-    //     send_velocity();
-    //     state = REST;
-    // }
 }
 
 void TurtleBot3Controller::test_get_pose()

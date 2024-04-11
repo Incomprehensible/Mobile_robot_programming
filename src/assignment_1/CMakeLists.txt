@@ -13,6 +13,7 @@ find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(angles REQUIRED)
 
 add_executable(control_node src/control_node.cpp src/control_node_main.cpp)
 target_include_directories(control_node PUBLIC
@@ -28,6 +29,7 @@ ament_target_dependencies(
   "tf2"
   "tf2_ros"
   "tf2_geometry_msgs"
+  "angles"
 )
 
 install(TARGETS control_node
