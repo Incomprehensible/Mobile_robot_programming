@@ -15,7 +15,7 @@ find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(angles REQUIRED)
 
-add_executable(control_node src/control_node.cpp src/control_node_main.cpp)
+add_executable(control_node src/control_node_mb.cpp src/control_node_main.cpp)
 target_include_directories(control_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
