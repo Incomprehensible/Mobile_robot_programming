@@ -47,8 +47,8 @@ class TurtleBot3Controller : public rclcpp::Node
     // The distance threshold in meters that will determine when 
     // the turtlesim robot successfully reaches the goal.
     const double distanceTolerance = 0.01;
-            // const double angleTolerance = 0.1;
-    const double angleTolerance = 0.3;
+            // const double angleTolerance = 0.3; // for degrees
+    const double angleTolerance = 0.01;
 
 
     
@@ -64,6 +64,8 @@ class TurtleBot3Controller : public rclcpp::Node
         double get_euclidian_distance(double, double);
         double get_angular_distance(double);
                 double get_angular_distance2(double);
+                        double get_angular_distance3(double);
+
 
         double set_linear_velocity(double, double);
         double set_angular_velocity(double);

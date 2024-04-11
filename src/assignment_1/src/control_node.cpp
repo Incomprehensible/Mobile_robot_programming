@@ -124,15 +124,21 @@ double TurtleBot3Controller::get_angular_distance2(double yaw)
     return normalized_goal_yaw - yaw;
 }
 
+double TurtleBot3Controller::get_angular_distance3(double yaw)
+{
+    double shortest_dist = angles::shortest_angular_distance(yaw, goal_yaw_);
+    
+    RCLCPP_INFO(this->get_logger(), "yaw: %f, goal_yaw: %f, shortest dist: %f", yaw, goal_yaw_, shortest_dist);
+
+    return shortest_dist;
+}
+
 double TurtleBot3Controller::set_angular_velocity(double yaw) {
     double vel_theta = 0;
-    double theta = this->get_angular_distance2(yaw);
-    double theta_rad = angles::from_degrees(theta);
-    RCLCPP_INFO(this->get_logger(), "angular dist: %f", theta);
-    RCLCPP_INFO(this->get_logger(), "angular dist in rad: %f", theta_rad);
+    double theta = this->get_angular_distance3(yaw);
 
     if (abs(theta) > angleTolerance) {
-        vel_theta = K_a * theta_rad;
+        vel_theta = K_a * theta;
         if (abs(vel_theta) > this->speed_)
             vel_theta = (theta > 0)? this->speed_ : this->speed_*-1;
     }
@@ -140,6 +146,21 @@ double TurtleBot3Controller::set_angular_velocity(double yaw) {
 }
 
 // latest
+// double TurtleBot3Controller::set_angular_velocity(double yaw) {
+//     double vel_theta = 0;
+//     double theta = this->get_angular_distance2(yaw);
+//     double theta_rad = angles::from_degrees(theta);
+//     RCLCPP_INFO(this->get_logger(), "angular dist: %f", theta);
+//     RCLCPP_INFO(this->get_logger(), "angular dist in rad: %f", theta_rad);
+
+//     if (abs(theta) > angleTolerance) {
+//         vel_theta = K_a * theta_rad;
+//         if (abs(vel_theta) > this->speed_)
+//             vel_theta = (theta > 0)? this->speed_ : this->speed_*-1;
+//     }
+//     return vel_theta;
+// }
+
 // double TurtleBot3Controller::set_angular_velocity(double yaw) {
 //     double vel_theta = 0;
 //     double theta = this->get_angular_distance2(yaw);
