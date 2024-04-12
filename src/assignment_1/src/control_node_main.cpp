@@ -1,6 +1,6 @@
 #include <cstdio>
 #include <rclcpp/rclcpp.hpp>
-#include "control_node.hpp"
+#include "control_node_mb.hpp"
 
 #define LOOP_RATE 0.5
 

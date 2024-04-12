@@ -26,14 +26,18 @@ class TurtleBot3Controller : public rclcpp::Node
     struct Setpoint {
         double x;
         double y;
-        // double yaw;
+        double yaw;
     };
 
-    const double K_l = 1.5;
-    const double K_a = 10.0;//5.0;
+    const double K_l = 1.0;
+    const double K_a = 10.0;
+        const double K_a2 = 0.9;
 
-    const double distanceTolerance = 0.1;
+
+    const double distanceTolerance = 0.1; // 0.5;
     const double angleTolerance = 0.05;
+        const double angleTolerance2 = 0.01;
+
     
     public:
         explicit TurtleBot3Controller(const rclcpp::NodeOptions & = rclcpp::NodeOptions(), const std::string& = "control_node");
@@ -42,6 +46,8 @@ class TurtleBot3Controller : public rclcpp::Node
 
     private:
         void go_in_square();
+                void go_in_square2();
+
         geometry_msgs::msg::TransformStamped::SharedPtr get_position();
         // double get_angular_distance(double);
         double normalize_angle(double);
@@ -49,7 +55,11 @@ class TurtleBot3Controller : public rclcpp::Node
 
         double get_linear_velocity(double, double);
         double get_angular_velocity(double);
+                double get_angular_velocity2(double);
+
         void control_cycle();
+                void control_cycle_angle();
+
         void send_velocity();
         void publish_pose();
         rcl_interfaces::msg::SetParametersResult param_change_callback(const std::vector<rclcpp::Parameter>&);
@@ -60,6 +70,7 @@ class TurtleBot3Controller : public rclcpp::Node
         Setpoint goal_;
         double speed_;
         bool goal_success_;
+        bool angle_goal_success_;
         tf2::Vector3 linear_vel_; 
         tf2::Vector3 angular_vel_;
         tf2::Quaternion orientation_;
