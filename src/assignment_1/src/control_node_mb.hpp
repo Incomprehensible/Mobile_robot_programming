@@ -18,6 +18,7 @@
 #include <tf2/utils.h>
 // #include <tf2/buffer_core.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#include "speed_interface/srv/set_speed.hpp" 
 
 #define SQUARE_POLYGON 5.0
 
@@ -45,6 +46,8 @@ class TurtleBot3Controller : public rclcpp::Node
         void init_setpoints();
 
     private:
+        void set_speed(const std::shared_ptr<speed_interface::srv::SetSpeed::Request>);//, std::shared_ptr<speed_interface::srv::SetSpeed::Response>);
+
         void go_in_square();
                 void go_in_square2();
 
@@ -84,7 +87,7 @@ class TurtleBot3Controller : public rclcpp::Node
         rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr vel_pub_;
         rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr pose_pub_;
         rclcpp::node_interfaces::OnSetParametersCallbackHandle::SharedPtr param_callback_handle_;
-
+        rclcpp::Service<speed_interface::srv::SetSpeed>::SharedPtr speed_service_;
 };
 
 #endif

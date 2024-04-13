@@ -4,6 +4,7 @@
 #include <angles/angles.h>
 
 using namespace std::chrono_literals;
+using namespace std::placeholders;
 
 TurtleBot3Controller::TurtleBot3Controller(const rclcpp::NodeOptions & options, const std::string & node_name)
     : Node(node_name, options), tf_buffer_(), tf_listener_(tf_buffer_)
@@ -25,15 +26,17 @@ TurtleBot3Controller::TurtleBot3Controller(const rclcpp::NodeOptions & options, 
 
     param_callback_handle_ = this->add_on_set_parameters_callback(
         std::bind(&TurtleBot3Controller::param_change_callback, this, std::placeholders::_1));
+    
+    this->speed_service_ = this->create_service<speed_interface::srv::SetSpeed>("set_speed", std::bind(&TurtleBot3Controller::set_speed, this, _1));
 
     // this->timer_ = this->create_wall_timer(std::chrono::milliseconds(150), std::bind(&TurtleBot3Controller::go_in_square2, this));
     this->timer_ = this->create_wall_timer(std::chrono::milliseconds(15), std::bind(&TurtleBot3Controller::go_in_square2, this));
 
     // 6D position publisher
-    pose_pub_ = create_publisher<geometry_msgs::msg::PoseStamped>("/pose", 10);
+    pose_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/pose", 10);
 
     // Control velocity publisher
-    vel_pub_ = create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
+    vel_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
     
     this->vel_timer_ = this->create_wall_timer(std::chrono::milliseconds(10), std::bind(&TurtleBot3Controller::send_velocity, this));
     this->pose_timer_ = this->create_wall_timer(std::chrono::milliseconds(1000), std::bind(&TurtleBot3Controller::publish_pose, this));
@@ -43,6 +46,14 @@ void TurtleBot3Controller::set_parameters()
 {
     this->speed_ = this->get_parameter("speed").as_double();
 }
+
+void TurtleBot3Controller::set_speed(const std::shared_ptr<speed_interface::srv::SetSpeed::Request> request)
+// std::shared_ptr<speed_interface::srv::SetSpeed::Response> response)
+{
+    this->speed_ = request->speed;
+    RCLCPP_INFO(this->get_logger(), "Set speed to: {%f}", request->speed);
+}
+
 
 double TurtleBot3Controller::normalize_angle(double angle) {
     return std::remainder(angle, 2.0 * M_PI);
@@ -198,13 +209,13 @@ void TurtleBot3Controller::control_cycle_angle()
     old_theta = vel_theta;
     angular_vel_.setZ(vel_theta);
     if (vel_theta == 0) {
-        timer_->cancel();
+        // timer_->cancel();
         angular_vel_.setZ(-1*old_theta*K_a2);
         send_velocity();
         angular_vel_.setZ(0);
         send_velocity();
         angle_goal_success_ = true;
-        timer_->reset();
+        // timer_->reset();
     }
 }
 
@@ -327,8 +338,7 @@ void TurtleBot3Controller::go_in_square2()
         control_cycle_angle();
     }
     else {
-            this->timer_ = this->create_wall_timer(std::chrono::milliseconds(15), std::bind(&TurtleBot3Controller::go_in_square2, this));
-
+        this->timer_ = this->create_wall_timer(std::chrono::milliseconds(15), std::bind(&TurtleBot3Controller::go_in_square2, this));
         control_cycle();
     }
 }

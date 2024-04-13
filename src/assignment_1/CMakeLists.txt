@@ -14,11 +14,13 @@ find_package(geometry_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(angles REQUIRED)
+find_package(speed_interface REQUIRED)
 
 add_executable(control_node src/control_node_mb.cpp src/control_node_main.cpp)
 target_include_directories(control_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
+
 target_compile_features(control_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 ament_target_dependencies(
   control_node
@@ -30,6 +32,7 @@ ament_target_dependencies(
   "tf2_ros"
   "tf2_geometry_msgs"
   "angles"
+  "speed_interface"
 )
 
 install(TARGETS control_node
