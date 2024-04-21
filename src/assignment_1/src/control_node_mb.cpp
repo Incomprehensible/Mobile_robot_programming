@@ -12,7 +12,7 @@ TurtleBot3Controller::TurtleBot3Controller(const rclcpp::NodeOptions & options, 
     rcl_interfaces::msg::ParameterDescriptor speed_descriptor;
     speed_descriptor.description = "Constant speed for the TurtleBot3";
 
-    this->declare_parameter<double>("speed", 0.0, speed_descriptor);
+    this->declare_parameter<double>("speed", DEFAULT_SPEED, speed_descriptor);
     this->set_parameters();
 
     linear_vel_ = {0, 0, 0};
@@ -274,48 +274,7 @@ void TurtleBot3Controller::control_cycle()
     }
 }
 
-// void TurtleBot3Controller::control_cycle()
-// {
-//     if (this->speed_ == 0)
-//         return;
-//     auto odom2robot_ptr = this->get_position();
-//     if (odom2robot_ptr == nullptr)
-//         return;
-//     auto odom2robot = *(odom2robot_ptr.get());
-
-//     double x = odom2robot.transform.translation.x;
-//     double y = odom2robot.transform.translation.y;
-
-//     orientation_.setX(odom2robot.transform.rotation.x);
-//     orientation_.setY(odom2robot.transform.rotation.y);
-//     orientation_.setZ(odom2robot.transform.rotation.z);
-//     orientation_.setW(odom2robot.transform.rotation.w);
-    
-//     double yaw;
-//     yaw = tf2::getYaw(orientation_);
-//     // double roll, pitch, yaw;
-//     // tf2::getEulerYPR(orientation_, yaw, pitch, roll);
-
-//     // RCLCPP_INFO(this->get_logger(), "{x y z yaw}: {%f %f %f %f}", x, y, z, yaw);
-//     RCLCPP_INFO(this->get_logger(), "x,y: {%f %f}", x, y);
-//     RCLCPP_INFO(this->get_logger(), "Desired position: {%f %f}", goal_.x, goal_.y);
-
-//     double x_diff = goal_.x - x;
-//     double y_diff = goal_.y - y;
-//     double yaw_desired = atan2(y_diff, x_diff);
-//     // double yaw_diff = yaw_desired - yaw;
-//     double yaw_diff = angles::shortest_angular_distance(yaw, yaw_desired);
-
-//     double vel_x = get_linear_velocity(x_diff, y_diff);
-//     double vel_theta = get_angular_velocity(yaw_diff);
-
-//     linear_vel_.setX(vel_x);
-//     angular_vel_.setZ(vel_theta);
-
-//     if (vel_x == 0 && vel_theta == 0)
-//         goal_success_ = true;
-// }
-
+// used
 void TurtleBot3Controller::go_in_square2()
 {
     if (this->speed_ == 0)

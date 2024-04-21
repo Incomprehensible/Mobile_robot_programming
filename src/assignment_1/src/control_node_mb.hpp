@@ -21,6 +21,7 @@
 #include "speed_interface/srv/set_speed.hpp" 
 
 #define SQUARE_POLYGON 5.0
+#define DEFAULT_SPEED 1.0
 
 class TurtleBot3Controller : public rclcpp::Node
 {
@@ -32,12 +33,12 @@ class TurtleBot3Controller : public rclcpp::Node
 
     const double K_l = 1.0;
     const double K_a = 10.0;
-        const double K_a2 = 0.9;
+    const double K_a2 = 0.9;
 
 
     const double distanceTolerance = 0.1; // 0.5;
     const double angleTolerance = 0.05;
-        const double angleTolerance2 = 0.01;
+    const double angleTolerance2 = 0.01;
 
     
     public:
@@ -49,7 +50,7 @@ class TurtleBot3Controller : public rclcpp::Node
         void set_speed(const std::shared_ptr<speed_interface::srv::SetSpeed::Request>);//, std::shared_ptr<speed_interface::srv::SetSpeed::Response>);
 
         void go_in_square();
-                void go_in_square2();
+        void go_in_square2();
 
         geometry_msgs::msg::TransformStamped::SharedPtr get_position();
         // double get_angular_distance(double);
@@ -58,10 +59,10 @@ class TurtleBot3Controller : public rclcpp::Node
 
         double get_linear_velocity(double, double);
         double get_angular_velocity(double);
-                double get_angular_velocity2(double);
+        double get_angular_velocity2(double);
 
         void control_cycle();
-                void control_cycle_angle();
+        void control_cycle_angle();
 
         void send_velocity();
         void publish_pose();
