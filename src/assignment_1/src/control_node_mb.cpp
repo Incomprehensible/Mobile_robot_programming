@@ -39,7 +39,7 @@ TurtleBot3Controller::TurtleBot3Controller(const rclcpp::NodeOptions & options, 
     vel_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
     
     this->vel_timer_ = this->create_wall_timer(std::chrono::milliseconds(10), std::bind(&TurtleBot3Controller::send_velocity, this));
-    this->pose_timer_ = this->create_wall_timer(std::chrono::milliseconds(1000), std::bind(&TurtleBot3Controller::publish_pose, this));
+    this->pose_timer_ = this->create_wall_timer(std::chrono::milliseconds(500), std::bind(&TurtleBot3Controller::publish_pose, this));
 }
 
 void TurtleBot3Controller::set_parameters()

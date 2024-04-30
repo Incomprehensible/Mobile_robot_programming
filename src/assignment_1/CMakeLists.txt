@@ -38,6 +38,27 @@ ament_target_dependencies(
 install(TARGETS control_node
   DESTINATION lib/${PROJECT_NAME})
 
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/)
+
+add_executable(subscriber_node src/subscriber_node.cpp src/subscriber_node_main.cpp)
+target_include_directories(subscriber_node PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+
+target_compile_features(subscriber_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+ament_target_dependencies(
+    subscriber_node
+  "rclcpp"
+  "geometry_msgs"
+  "tf2"
+  "tf2_geometry_msgs"
+)
+
+install(TARGETS subscriber_node
+  DESTINATION lib/${PROJECT_NAME})
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
