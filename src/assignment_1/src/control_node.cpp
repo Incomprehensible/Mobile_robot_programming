@@ -3,7 +3,9 @@
 #include <rclcpp/parameter.hpp>
 #include <angles/angles.h>
 
+
 using namespace std::chrono_literals;
+using namespace std::placeholders;
 
 TurtleBot3Controller::TurtleBot3Controller(const rclcpp::NodeOptions & options, const std::string & node_name)
     : Node(node_name, options), tf_buffer_(), tf_listener_(tf_buffer_)
@@ -11,33 +13,86 @@ TurtleBot3Controller::TurtleBot3Controller(const rclcpp::NodeOptions & options, 
     rcl_interfaces::msg::ParameterDescriptor speed_descriptor;
     speed_descriptor.description = "Constant speed for the TurtleBot3";
 
-    this->declare_parameter<double>("speed", 0.0, speed_descriptor);
+    this->declare_parameter<double>("speed", DEFAULT_SPEED, speed_descriptor);
     this->set_parameters();
-
-    param_callback_handle_ = this->add_on_set_parameters_callback(
-        std::bind(&TurtleBot3Controller::param_change_callback, this, std::placeholders::_1));
-
-    this->state = REST;
 
     linear_vel_ = {0, 0, 0};
     angular_vel_ = {0, 0, 0};
 
-    // this->timer_ = this->create_wall_timer(std::chrono::milliseconds(180), std::bind(&TurtleBot3Controller::control_cycle, this));
-    this->timer_ = this->create_wall_timer(std::chrono::milliseconds(200), std::bind(&TurtleBot3Controller::control_cycle, this));
+    // initialize the setpoints for the square
+    this->init_setpoints();
+
+    goal_ = setpoints_.front();
+    goal_success_ = false;
+
+    param_callback_handle_ = this->add_on_set_parameters_callback(
+        std::bind(&TurtleBot3Controller::param_change_callback, this, std::placeholders::_1));
+    
+    // service for default speed setting
+    this->speed_service_ = this->create_service<speed_interface::srv::SetSpeed>("set_speed", std::bind(&TurtleBot3Controller::set_speed, this, _1));
+
+    this->timer_ = this->create_wall_timer(15ms, std::bind(&TurtleBot3Controller::go_in_square, this));
 
     // 6D position publisher
-    pose_pub_ = create_publisher<geometry_msgs::msg::PoseStamped>("/pose", 10);
+    pose_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/pose", 10);
 
     // Control velocity publisher
-    vel_pub_ = create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
+    vel_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
     
-    this->vel_timer_ = this->create_wall_timer(std::chrono::milliseconds(10), std::bind(&TurtleBot3Controller::send_velocity, this));
-    this->pose_timer_ = this->create_wall_timer(std::chrono::milliseconds(1000), std::bind(&TurtleBot3Controller::publish_pose, this));
+    this->vel_timer_ = this->create_wall_timer(10ms, std::bind(&TurtleBot3Controller::send_velocity, this));
+    this->pose_timer_ = this->create_wall_timer(150ms, std::bind(&TurtleBot3Controller::publish_pose, this));
 }
 
 void TurtleBot3Controller::set_parameters()
 {
     this->speed_ = this->get_parameter("speed").as_double();
+}
+
+void TurtleBot3Controller::set_speed(const std::shared_ptr<speed_interface::srv::SetSpeed::Request> request)
+{
+    if (request->speed >= MAX_SPEED)
+    {
+        RCLCPP_WARN(this->get_logger(), "Setting maximum supported speed: %f. Consider switching to lower speed to avoid operating your robot at critical conditions.", MAX_SPEED);
+        RCLCPP_WARN(this->get_logger(), "Robot might behave in unstable manner. Consider increasing the tolerances if you want to run at maximum speed.");
+        this->speed_ = MAX_SPEED;
+    }
+    else
+        this->speed_ = request->speed;
+    RCLCPP_INFO(this->get_logger(), "Set speed to: {%f}", this->speed_);
+}
+
+// used for setpoints initialization
+double TurtleBot3Controller::normalize_angle(double angle) {
+    return std::remainder(angle, 2.0 * M_PI);
+}
+
+void TurtleBot3Controller::init_setpoints()
+{
+    rclcpp::Rate rate(1s);
+
+    geometry_msgs::msg::TransformStamped::SharedPtr odom2robot_ptr;
+    // simulated robot is not spawned yet - wait
+    while ((odom2robot_ptr = this->get_position()) == nullptr) {
+        rate.sleep();
+    }
+
+    auto odom2robot = *(odom2robot_ptr.get());
+
+    double x_origin = odom2robot.transform.translation.x;
+    double y_origin = odom2robot.transform.translation.y;
+
+    orientation_.setX(odom2robot.transform.rotation.x);
+    orientation_.setY(odom2robot.transform.rotation.y);
+    orientation_.setZ(odom2robot.transform.rotation.z);
+    orientation_.setW(odom2robot.transform.rotation.w);
+    
+    double yaw_origin = tf2::getYaw(orientation_);
+
+    setpoints_.push_back({x_origin+5, y_origin, yaw_origin});
+    setpoints_.push_back({x_origin+5, y_origin+5, normalize_angle(yaw_origin+M_PI_2)});
+    setpoints_.push_back({x_origin, y_origin+5, normalize_angle(yaw_origin+2*M_PI_2)});
+    setpoints_.push_back({x_origin, y_origin, normalize_angle(yaw_origin+3*M_PI_2)});
+    setpoints_.shrink_to_fit();
 }
 
 geometry_msgs::msg::TransformStamped::SharedPtr TurtleBot3Controller::get_position()
@@ -50,28 +105,15 @@ geometry_msgs::msg::TransformStamped::SharedPtr TurtleBot3Controller::get_positi
         RCLCPP_ERROR(this->get_logger(), "Odom to robot transform not found: %s", e.what());
         return nullptr;
     }
-    return std::make_shared<geometry_msgs::msg::TransformStamped>(odom2robot);
+    return std::make_shared<geometry_msgs::msg::TransformStamped>(std::move(odom2robot));
 }
 
-// double TurtleBot3Controller::get_euclidian_distance(double x, double y)
-// {
-//     return abs(std::sqrt(std::pow(x-this->x_init_, 2) + std::pow(y-this->y_init_, 2)) - SQUARE_POLYGON);
-// }
-
-double TurtleBot3Controller::get_euclidian_distance(double x, double y)
-{
-    return (SQUARE_POLYGON - std::sqrt(std::pow(x-this->x_init_, 2) + std::pow(y-this->y_init_, 2)));
-}
-
-double TurtleBot3Controller::set_linear_velocity(double x, double y) {
+double TurtleBot3Controller::get_linear_velocity(double x, double y) {
     double vel_x = 0;
-    double dist = this->get_euclidian_distance(x, y);
-    RCLCPP_INFO(this->get_logger(), "linear dist: %f", dist);
+    double dist = std::sqrt(std::pow(x, 2) + std::pow(y, 2));
+    RCLCPP_DEBUG(this->get_logger(), "Linear distance: %f", dist);
 
     if (abs(dist) > distanceTolerance) {
-        // The magnitude of the robot's velocity is directly
-        // proportional to the distance the robot is from the 
-        // goal.
         vel_x = K_l * dist;
         if (abs(vel_x) > this->speed_)
             vel_x = (dist > 0)? this->speed_ : this->speed_*-1;
@@ -79,125 +121,44 @@ double TurtleBot3Controller::set_linear_velocity(double x, double y) {
     return vel_x;
 }
 
-// double TurtleBot3Controller::set_linear_velocity(double x, double y) {
-//     double vel_x = 0;
-//     double dist = this->get_euclidian_distance(x, y);
-//     RCLCPP_INFO(this->get_logger(), "linear dist: %f", dist);
-
-//     if (dist > distanceTolerance) {
-//         // The magnitude of the robot's velocity is directly
-//         // proportional to the distance the robot is from the 
-//         // goal.
-//         vel_x = K_l * dist;
-//         vel_x = (vel_x > this->speed_)? this->speed_ : vel_x;
-//     }
-//     return vel_x;
-// }
-
-double normalizeAngle(double angle) {
-    return std::remainder(angle, 2.0 * M_PI);
-}
-
-double TurtleBot3Controller::get_angular_distance(double yaw)
-{
-    // Normalize current_yaw to [-π, π] range
-
-    // Calculate the new yaw angle after rotation
-    // double goal_yaw = yaw_init_ + M_PI_2;
-    // RCLCPP_INFO(this->get_logger(), "yaw_init_: %f, yaw_init_+(pi/2): %f", yaw_init_, new_yaw);
-
-    // Normalize the new_yaw to [-π, π] range
-    // goal_yaw = normalizeAngle(goal_yaw);
-
-    // Set the new yaw angle
-    // RCLCPP_INFO(this->get_logger(), "yaw: %f, new_yaw: %f, yaw-new_yaw: %f", yaw, new_yaw, yaw-new_yaw);
-
-    return abs(yaw - goal_yaw_);
-}
-
-double TurtleBot3Controller::get_angular_distance2(double yaw)
-{
-    yaw = angles::to_degrees(angles::normalize_angle_positive(yaw));
-    double normalized_goal_yaw = angles::to_degrees(angles::normalize_angle_positive(goal_yaw_)); // TODO: calculate beforehand
-        RCLCPP_INFO(this->get_logger(), "yaw: %f, goal_yaw: %f, yaw-goal_yaw: %f", yaw, normalized_goal_yaw, yaw-normalized_goal_yaw);
-
-    return normalized_goal_yaw - yaw;
-}
-
-double TurtleBot3Controller::get_angular_distance3(double yaw)
-{
-    double shortest_dist = angles::shortest_angular_distance(yaw, goal_yaw_);
-    
-    RCLCPP_INFO(this->get_logger(), "yaw: %f, goal_yaw: %f, shortest dist: %f", yaw, goal_yaw_, shortest_dist);
-
-    return shortest_dist;
-}
-
-double TurtleBot3Controller::set_angular_velocity(double yaw) {
+// heading angle control
+double TurtleBot3Controller::get_angular_velocity(double theta) {
     double vel_theta = 0;
-    double theta = this->get_angular_distance3(yaw);
+    // double theta = atan2(sin(yaw), cos(yaw));
 
-    if (abs(theta) > angleTolerance) {
-        vel_theta = K_a * theta;
+    RCLCPP_DEBUG(this->get_logger(), "Angular distance: %f", theta);
+
+    if (abs(theta) > headingAngleTolerance) {
+        vel_theta = K_ha * theta;
         if (abs(vel_theta) > this->speed_)
             vel_theta = (theta > 0)? this->speed_ : this->speed_*-1;
     }
     return vel_theta;
 }
 
-// latest
-// double TurtleBot3Controller::set_angular_velocity(double yaw) {
-//     double vel_theta = 0;
-//     double theta = this->get_angular_distance2(yaw);
-//     double theta_rad = angles::from_degrees(theta);
-//     RCLCPP_INFO(this->get_logger(), "angular dist: %f", theta);
-//     RCLCPP_INFO(this->get_logger(), "angular dist in rad: %f", theta_rad);
+// turning angle control
+double TurtleBot3Controller::get_angular_turn_velocity(double theta) {
+    double vel_theta = 0;
+    // double theta = atan2(sin(yaw), cos(yaw));
 
-//     if (abs(theta) > angleTolerance) {
-//         vel_theta = K_a * theta_rad;
-//         if (abs(vel_theta) > this->speed_)
-//             vel_theta = (theta > 0)? this->speed_ : this->speed_*-1;
-//     }
-//     return vel_theta;
-// }
+    RCLCPP_DEBUG(this->get_logger(), "Angular distance: %f", theta);
 
-// double TurtleBot3Controller::set_angular_velocity(double yaw) {
-//     double vel_theta = 0;
-//     double theta = this->get_angular_distance2(yaw);
-//     RCLCPP_INFO(this->get_logger(), "angular dist: %f", theta);
+    if (abs(theta) > turnAngleTolerance) {
+        vel_theta = K_ta * theta;
+        if (abs(vel_theta) > this->speed_)
+            vel_theta = (theta > 0)? this->speed_ : this->speed_*-1;
+    }
+    return vel_theta;
+}
 
-//     if (abs(theta) > angleTolerance) {
-//         vel_theta = K_a * theta;
-//         if (abs(vel_theta) > this->speed_)
-//             vel_theta = (theta > 0)? this->speed_ : this->speed_*-1;
-//     }
-//     return vel_theta;
-// }
-
-// double TurtleBot3Controller::set_angular_velocity(double yaw) {
-//     double vel_theta = 0;
-//     double theta = this->get_angular_distance(yaw);
-//     RCLCPP_INFO(this->get_logger(), "angular dist: %f", theta);
-
-//     if (theta > angleTolerance) {
-//         vel_theta = K_a * theta;
-//         vel_theta = (vel_theta > this->speed_)? this->speed_ : vel_theta;
-//     }
-//     return vel_theta;
-// }
-
-void TurtleBot3Controller::control_cycle()
+void TurtleBot3Controller::turn_control_cycle()
 {
-    if (this->speed_ == 0)
-        return;
+    static double old_theta = 0;
+
     auto odom2robot_ptr = this->get_position();
     if (odom2robot_ptr == nullptr)
         return;
     auto odom2robot = *(odom2robot_ptr.get());
-
-    double x = odom2robot.transform.translation.x;
-    double y = odom2robot.transform.translation.y;
-    // double z = odom2robot.transform.translation.z;
 
     orientation_.setX(odom2robot.transform.rotation.x);
     orientation_.setY(odom2robot.transform.rotation.y);
@@ -206,100 +167,111 @@ void TurtleBot3Controller::control_cycle()
     
     double yaw;
     yaw = tf2::getYaw(orientation_);
-    // double roll, pitch, yaw;
-    // tf2::getEulerYPR(orientation_, yaw, pitch, roll);
 
-    // RCLCPP_INFO(this->get_logger(), "{x y z yaw}: {%f %f %f %f}", x, y, z, yaw);
+    RCLCPP_DEBUG(this->get_logger(), "Yaw: {%f}", yaw);
+    RCLCPP_DEBUG(this->get_logger(), "Desired yaw: {%f}", goal_.yaw);
 
-    // rclcpp::Rate rate(5s);
-    if (this->state == REST) {
-        x_init_ = x;
-        y_init_ = y;
-        this->state = FORWARD;
-    }
-    else if (this->state == FORWARD) {
-        double vel_x = this->set_linear_velocity(x, y);
-        // RCLCPP_INFO(this->get_logger(), "setting linear velocity: %f", vel_x);
-        linear_vel_.setX(vel_x);
-        // send_velocity();
-        if (vel_x == 0) {
-            yaw_init_ = yaw;
-            goal_yaw_ = yaw + M_PI_2;
-            goal_yaw_ = normalizeAngle(goal_yaw_);
-            this->state = TURN;
-            // this->timer_->cancel();
-            // rate.sleep();
-            // this->timer_->reset();
-        }
-    }
-    else if (this->state == TURN)
-    {
-        double vel_theta = this->set_angular_velocity(yaw);
-        // RCLCPP_INFO(this->get_logger(), "setting angular velocity: %f", vel_theta);
-        angular_vel_.setZ(vel_theta);
-        // send_velocity();
-        if (vel_theta == 0) {
-            x_init_ = x;
-            y_init_ = y;
-            this->state = FORWARD;
-            // this->timer_->cancel();
-            // angular_vel_.setX(0);
-            // angular_vel_.setY(0);
-            // angular_vel_.setZ(0);
-            // for (int i=0; i<1000; ++i)
-            //     send_velocity();
-            // // rate.sleep();
-            // this->timer_->reset();
-        }
+    double yaw_diff = angles::shortest_angular_distance(yaw, goal_.yaw);
+
+    double vel_theta = get_angular_turn_velocity(yaw_diff);
+    old_theta = vel_theta;
+    angular_vel_.setZ(vel_theta);
+    // applying tiny back acceleration burst to weaken simulated robot's spontaneous drift after turning
+    if (vel_theta == 0) {
+        angular_vel_.setZ(-1*old_theta*K_ta);
+        send_velocity();
+        angular_vel_.setZ(0);
+        send_velocity();
+        angle_goal_success_ = true;
     }
 }
 
-void TurtleBot3Controller::test_get_pose()
+void TurtleBot3Controller::control_cycle()
 {
-    geometry_msgs::msg::TransformStamped odom2robot;
-
-    try {
-        odom2robot = tf_buffer_.lookupTransform("odom", "base_footprint", tf2::TimePointZero);
-    } catch (tf2::TransformException& e) {
-        RCLCPP_ERROR(this->get_logger(), "Odom to robot transform not found: %s", e.what());
+    static double old_vel = 0;
+    auto odom2robot_ptr = this->get_position();
+    if (odom2robot_ptr == nullptr)
         return;
-    }
+    auto odom2robot = *(odom2robot_ptr.get());
 
     double x = odom2robot.transform.translation.x;
     double y = odom2robot.transform.translation.y;
-    double z = odom2robot.transform.translation.z;
 
-    RCLCPP_INFO(this->get_logger(), "{x y z}: {%f %f %f}", x, y, z);
+    orientation_.setX(odom2robot.transform.rotation.x);
+    orientation_.setY(odom2robot.transform.rotation.y);
+    orientation_.setZ(odom2robot.transform.rotation.z);
+    orientation_.setW(odom2robot.transform.rotation.w);
+    
+    double yaw;
+    yaw = tf2::getYaw(orientation_);
+    
+    RCLCPP_DEBUG(this->get_logger(), "x,y: {%f %f}", x, y);
+    RCLCPP_DEBUG(this->get_logger(), "Desired position: {%f %f}", goal_.x, goal_.y);
+
+    double x_diff = goal_.x - x;
+    double y_diff = goal_.y - y;
+    double yaw_desired = atan2(y_diff, x_diff);
+    double yaw_diff = angles::shortest_angular_distance(yaw, yaw_desired);
+
+    double vel_x = get_linear_velocity(x_diff, y_diff);
+    old_vel = vel_x;
+    linear_vel_.setX(vel_x);
+    if (vel_x == 0)
+    {
+        angular_vel_.setZ(0);
+        timer_->cancel();
+        // applying tiny back acceleration burst to weaken simulated robot's spontaneous drift after turning
+        linear_vel_.setX(-1*old_vel*K_l);
+        send_velocity();
+        linear_vel_.setX(0);
+        send_velocity();
+        goal_success_ = true;
+        timer_->reset();
+    }
+    else
+    {
+        double vel_theta = get_angular_velocity(yaw_diff);
+        angular_vel_.setZ(vel_theta);
+    }
 }
 
-// void TurtleBot3Controller::go_forward()
-// {
-//     this->angular_vel_.setZ(0.0);
-//     this->linear_vel_.setX(speed_);
-//     send_velocity();
-//     this->linear_vel_.setX(0.0);
-//     // std::chrono::duration<double> duration(5.0 / speed_);
-//     // rclcpp::sleep_for(std::chrono::duration_cast<std::chrono::nanoseconds>(duration));
-// }
+void TurtleBot3Controller::go_in_square()
+{
+    if (this->speed_ == 0)
+        return;
+    static auto iter = setpoints_.begin();
 
-// void TurtleBot3Controller::turn()
-// {
-//     this->linear_vel_.setX(0.0);
-//     this->angular_vel_.setZ(0.5);
-    
-//     send_velocity();
-// }
+    if (goal_success_)
+    {
+        iter++;
+        if (iter == setpoints_.end())
+            iter = setpoints_.begin();
+        goal_ = *iter;
+        angle_goal_success_  = false;
+        goal_success_ = false;
+
+        RCLCPP_DEBUG(this->get_logger(), "GOAL SUCCESS! Next goal: {%f %f}", goal_.x, goal_.y);
+    }
+    else if (!angle_goal_success_) {
+        this->timer_ = this->create_wall_timer(std::chrono::milliseconds(400), std::bind(&TurtleBot3Controller::go_in_square, this));
+
+        turn_control_cycle();
+    }
+    else {
+        this->timer_ = this->create_wall_timer(std::chrono::milliseconds(15), std::bind(&TurtleBot3Controller::go_in_square, this));
+        control_cycle();
+    }
+}
 
 void TurtleBot3Controller::send_velocity()
 {
     geometry_msgs::msg::Twist cmd_vel = geometry_msgs::msg::Twist();
     cmd_vel.linear = tf2::toMsg(linear_vel_);
     cmd_vel.angular = tf2::toMsg(angular_vel_);
-    // RCLCPP_INFO(this->get_logger(), "lin_vel: {%f %f %f}", this->linear_vel_.getX(), this->linear_vel_.getY(), this->linear_vel_.getZ());
-    // RCLCPP_INFO(this->get_logger(), "ang_vel: {%f %f %f}", this->angular_vel_.getX(), this->angular_vel_.getY(), this->angular_vel_.getZ());
     this->vel_pub_->publish(cmd_vel);
 }
 
+// publish current pose relative to the robot's /odom frame of reference (starting position)
 void TurtleBot3Controller::publish_pose()
 {
     geometry_msgs::msg::TransformStamped odom2robot;
@@ -307,7 +279,7 @@ void TurtleBot3Controller::publish_pose()
     try {
         odom2robot = tf_buffer_.lookupTransform("odom", "base_footprint", tf2::TimePointZero);
     } catch (tf2::TransformException& e) {
-        RCLCPP_ERROR(this->get_logger(), "Odom to robot transform not found: %s", e.what());
+        RCLCPP_WARN(this->get_logger(), "Odom to robot transform not found: %s", e.what());
         return;
     }
 
@@ -317,38 +289,33 @@ void TurtleBot3Controller::publish_pose()
     pose.pose.position.z = odom2robot.transform.translation.z;
     tf2::convert(odom2robot.transform.rotation, pose.pose.orientation);
 
-    // test
-    // double roll, pitch, yaw;
-    // tf2::Quaternion q;
-    // tf2::convert(odom2robot.transform.rotation, q);
-    // tf2::getEulerYPR(q, yaw, pitch, roll);
-    // RCLCPP_INFO(this->get_logger(), "{yaw}: {%f}", yaw);
-    
-    // RCLCPP_INFO(this->get_logger(), "lin_vel: {%f %f %f}", this->linear_vel_.getX(), this->linear_vel_.getY(), this->linear_vel_.getZ());
     this->pose_pub_->publish(pose);
 }
 
+// callback for setting default speed via a ROS parameter
 rcl_interfaces::msg::SetParametersResult TurtleBot3Controller::param_change_callback(const std::vector<rclcpp::Parameter> &params)
 {
-    // Create a result object to report the outcome of parameter changes.
     auto result = rcl_interfaces::msg::SetParametersResult();
- 
-    // Assume success unless an unsupported parameter is encountered.
     result.successful = true;
 
-    // Iterate through each parameter in the change request.    
     for (const auto &param : params) 
     {
-        // Check if the changed parameter is 'velocity_limit' and of type double.
+        // checking if the changed parameter is of the right type
         if (param.get_name() == "speed" && param.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE) 
         {
-            this->speed_ = param.as_double();
-            RCLCPP_INFO(this->get_logger(), "Parameter 'speed' has changed. The new value is: %f", param.as_double());
+            if (param.as_double() >= MAX_SPEED)
+            {
+                RCLCPP_WARN(this->get_logger(), "Setting maximum supported speed: %f. Consider switching to lower speed to avoid operating your robot at critical conditions.", param.as_double());
+                RCLCPP_WARN(this->get_logger(), "Robot might behave in unstable manner. Consider increasing the tolerances if you want to run at maximum speed.");
+                this->speed_ = MAX_SPEED;
+            }
+            else {
+                this->speed_ = param.as_double();
+                RCLCPP_INFO(this->get_logger(), "Parameter 'speed' has changed. The new value is: %f", param.as_double());
+            }
         } 
-        // Handle any unsupported parameters.
         else
         {
-            // Mark the result as unsuccessful and provide a reason.
             result.successful = false;
             result.reason = "Unsupported parameter";
         }
