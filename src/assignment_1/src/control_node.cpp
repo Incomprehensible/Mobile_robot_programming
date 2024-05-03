@@ -124,7 +124,6 @@ double TurtleBot3Controller::get_linear_velocity(double x, double y) {
 // heading angle control
 double TurtleBot3Controller::get_angular_velocity(double theta) {
     double vel_theta = 0;
-    // double theta = atan2(sin(yaw), cos(yaw));
 
     RCLCPP_DEBUG(this->get_logger(), "Angular distance: %f", theta);
 
@@ -139,7 +138,6 @@ double TurtleBot3Controller::get_angular_velocity(double theta) {
 // turning angle control
 double TurtleBot3Controller::get_angular_turn_velocity(double theta) {
     double vel_theta = 0;
-    // double theta = atan2(sin(yaw), cos(yaw));
 
     RCLCPP_DEBUG(this->get_logger(), "Angular distance: %f", theta);
 
