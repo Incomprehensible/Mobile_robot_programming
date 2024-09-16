@@ -1,5 +1,5 @@
 # Mobile_robot_programming
-Code for the course `700.240 (24S) Mobile Robot Programming` at the University of Klagenfurt.
+Code for the course **700.240 (24S) Mobile Robot Programming** at the University of Klagenfurt.
 
 ## Assignment 1: ROS 2 Navigation and Control
 Objectives:
