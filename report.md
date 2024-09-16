@@ -1,5 +1,9 @@
 # Design report
 
+### Team:
+* Varzonova Nadezhda
+* Tunde Derrick
+
 ## Brief introduction to the code structure
 When structuring the code of our project we tried to follow the [ROS2 best practices](https://docs.ros.org/en/humble/The-ROS2-Project/Contributing/Developer-Guide.html#filesystem-layout) as closely as possible. Although due to the simplicity of the project we sometimes deviated from the mentioned practices list.
 For example, since we will probably not export this package to any outside projects (this is a local project) and therefore will not export any libraries as importable downstream dependencies we decided to omit the `include` directory and put our code into `src` folder.
@@ -347,10 +351,17 @@ else
     this->speed_ = request->speed;
 ```
 
+## How to build
+First go to the `src` directory:
+```zsh
+$ cd ~/mobile_robots_programming/src
+$ colcon build
+$ source install/setup.bash
+```
+
 ## How to launch
 To run the project with simulation and both the subscriber node and controller node running type the commands:
 ```zsh
-$ cd src
 $ ros2 run assignment_1 subscriber_node
 $ ros2 launch assignment_1 controller.launch.py
 ```
